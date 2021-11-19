@@ -11,7 +11,7 @@ var Category =require('../models/category');
  */
 
 router.get('/',function(req,res){
-    res.send('cats index')
+    res.send('cats index');
 
   /* Page.find({}).sort({sorting:1}).exec(function (err,pages){
       res.render('admin/pages', {
