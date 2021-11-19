@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+ <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+
+    <title>E-shopping Admin</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/adminstyle.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  </head>
+
+  <body>
+
+    <section class="header">
+		<nav>
+			<div class="nav-links" id="navlinks">
+				<i class="fa fa-times" onclick="hideMenu()"></i>
+				<ul>
+					
+				</ul>
+			</div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>		
+        </nav>
+		<div class="text-box">
+			 <h1>Langages et cours de Programmation</h1>
+                   <p>Platforme qui mis à votre disposition des langages et des cours </p>
+             <a href=#roww class="hero-btn">VOIR PLUS</a> 
+		</div>
+	</section>
+
+
+
+
+
+
+
+    <div class="container">
+    <%- messages('messages', locals) %>
+      
+    <% if (errors) {%>
+        <% errors.forEach(function(error) { %>
+        <div class="alert alert-danger">
+            <%= error.msg %>
+        </div>
+        <% });%>
+    <% }%>
+      
+
+    

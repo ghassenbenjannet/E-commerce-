@@ -1,0 +1,512 @@
+*{
+	margin: 0; 
+	padding: 0;
+}
+
+.header{
+	min-height: 70vh;
+	width: 100%;
+	background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/img1.png);
+	background-position: center;
+    background-size: cover;
+    position:relative;
+}
+
+nav{
+	display: flex;
+	padding: 2% 6%;
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav img{
+	width: 60px;
+	margin: 12px;
+	padding: 12px 34px;
+	
+	
+}
+
+.nav-links{
+	flex: 1;
+	text-align: right;
+	
+	
+
+}
+
+.nav-links ul li {
+	list-style: none;
+	display: inline-block;
+	padding: 8px 12px;
+	position: relative;	
+}
+
+.nav-links ul li a {
+	color: #fff;
+	text-decoration: none;
+	font-size: 19px;
+}
+
+.nav-links ul li::after {
+	content: '';
+	width: 0%;
+	height: 2px;
+	background-color: #f44336;
+	display: block;
+	margin: auto;
+	transition: 0.5s;
+}
+
+.nav-links ul li:hover::after {
+	width: 100%;
+}
+
+.text-box{
+	width: 90%;
+	color: #fff;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -40%;
+	text-align: center;
+}
+
+.text-box h1{
+	font-size: 62px;
+}
+
+.text-box p{
+	margin: 10px 0 40px;
+	font-size: 14px;
+	color: #fff;
+}
+
+.hero-btn{
+	display: inline-block;
+	text-decoration: none;
+	color: #fff;
+	border: 1px solid #fff;
+	padding: 12px 34px;
+	font-size: 13px;
+	background-color: transparent;
+}
+
+.hero-btn:hover{
+	border:1px solid #f44336;
+	background: #f44336;
+	transition: 1s;
+}
+
+nav .fa{
+	display: none;
+}
+
+@media(max-width: 700px){
+	.text-box h1{
+	font-size: 20px;}
+
+	.nav-links ul li{
+	display: block;}
+
+	.nav-links {
+	 position: absolute; 
+	 background: #f44336;
+	 height: 100vh;
+	 width: 200px;
+	 top:0; 
+	 right: -200px ;
+	 text-align: left;
+	 z-index: 2;
+	}
+
+	 nav .fa{
+	 	display: block;
+	 	color: #fff;
+	 	margin: 10px;
+	 	font-size: 22px;
+	 	cursor: pointer;
+	 }
+
+	 .nav-links ul{
+	 	padding: 30px;
+	 }
+
+
+}
+/*****to the top ******/
+.scroll_to_top {
+  position: fixed;
+  width: 25px;
+  height: 25px;
+  bottom: 50px;
+  right: 30px;
+
+}
+.scroll_to_top img {
+  width: 25px;
+}
+
+
+/**** contenu ****/
+.lang{
+	width: 80%;
+	margin: auto;
+	text-align: center;
+	padding-top: 100px;
+}
+h1{
+	font-size: 36px
+	font-weight:600;
+}
+p{
+	color:#777;
+	font-size: 14px;
+	font-weight: 300;
+	font-height:22px;
+    padding: 10px;
+}
+.row{
+	margin-top: 5%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.lang-info{
+	flex-basis: 31%;
+	background:#fff3f3;
+	border-radius: 10px;
+	margin-bottom: 5%;
+	padding: 20px 12px;
+	box-sizing: border-box;
+	transition: 0.5s;
+}
+h1{
+	text-align: center;
+	font-weight: 600;
+	margin:10px 0;
+}
+
+.lang-info:hover{
+	box-shadow: 0 0 20px 0 rgba(0,0,0,0.2) ;
+}
+
+@media(max-width: 700px){
+	.row{
+		flex-direction: column;
+	}
+}
+
+.contenu{
+	width: 80%;
+	margin:auto;
+	text-align:center;
+	padding-top: 50px;
+}
+
+.contenu-info{
+	flex-basis: 32%;
+	border-radius: 20px;
+	margin-bottom: 30px;
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 5%;
+	padding: 20px 12px;
+}
+
+
+.contenu-info img{
+	width: 50%;
+	margin-left: 50px;
+	padding: 50px 50px;
+}
+
+.layer{
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2) ;
+	border-radius: 10px;
+	height: 70%;
+	margin-left: 90px;
+	width: 30%;
+	position: absolute;
+	top: 2px;
+	left: 0;
+	transition: 0.5s;
+	padding: 50px 50px;
+	color: #fff;
+	text-decoration: none;
+}
+
+.layer:hover{
+	background: rgba(226,0,0,0.7);
+	cursor: pointer;
+	color:#fff;
+}
+
+.layer h2{
+	width: 100%;
+	font-weight: 500;
+	color: #fff;
+	font-size: 26px;
+	bottom: 0;
+	left:50%;
+	transform: translateX(-50%);
+	position: absolute;
+	text-align: center;
+	opacity: 0;
+	transition: 0.5s;
+	
+}
+.layer:hover h2{
+	bottom: 49%;
+	opacity: 1;
+
+}
+
+
+
+/**** footer-contact****/
+.cta{
+	margin:100px auto;
+	width: 80%;
+	background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(images/img2.png);
+	background-position: center;
+	background-size: cover;
+	border-radius: 10px;
+	text-align: center;
+	padding: 100px 0;
+}
+.cta h1{
+	color: #fff;
+	margin-bottom: 40px;
+	padding: 0;
+
+}
+
+@media(max-width: 700px){
+	.cta h1{
+		font-size: 26px;
+	}
+}
+
+/*****footer*****/
+.footer{
+	width: 100%;
+	text-align: center;
+	padding: 30px 0;
+}
+.icons .fa{
+	color:#f44336;
+	margin: 0 13px;
+	cursor: pointer;
+	padding: 18px 0;
+}
+
+
+
+
+/****************** Communs*****************************************/
+h2
+{
+	color: #f44336;
+}
+
+
+
+
+/*************************** HTML 5 *************************************/
+
+.sub-header{
+	height: 60vh;
+	width: 100%;
+	background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/img1.png);
+	background-position: center;
+	background-size: cover;
+	text-align: center;
+	color: #fff;
+}
+.sub-header .text-box{
+	margin-top:-7%;
+}
+@media(max-width: 700px){
+	.sub-header .text-box{
+	margin-top:-20%;
+	
+	}
+	.header .text-box
+	{margin-top:-15%;}
+}
+
+.contenu-html{
+	width: 80%;
+	margin:auto;
+	padding: 60px 0;
+	
+}
+
+.html-left{
+	flex-basis: 65%;
+	padding: 30px 2px;
+}
+.html-left img{
+	width: 100%;
+}
+.html-left h2{
+	color: #222;
+	font-weight: 600;
+	margin: 30px 0;
+}
+.html-left p,ul,li{
+	color: #999;
+	padding: 0;
+	font-size: 16px;
+}
+
+.somm{
+    flex-basis: 32%;
+}
+.somm h3{
+	text-align: center;
+	background: #f44336;
+	color: #fff;
+	padding: 7px 0;
+	font-size: 22px;
+	margin-bottom: 20px;
+
+
+}
+
+
+.somm li{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color:#555;
+	font-size: 18px;
+	padding: 8px;
+	box-sizing: border-box;
+	cursor: pointer;
+	
+}
+
+.somm li:hover{
+	background: #f446;
+	transition: 1s;
+
+}
+.somm li a{
+	text-decoration: none;
+	color: black;
+}
+.cours{
+	width: 75%;
+	margin-top: 5%;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	margin-left: 120px;
+}
+
+#l1 img{
+	width:70%;
+	border:2px solid #002155;
+	border-radius: 10px;
+}
+
+#l3 img{
+	width: 40%;
+
+}
+.cours p{
+	color: black;
+	font-size: 18px;
+}
+.cours div{
+	flex-basis: 31%;
+	background:transparent; ;
+	border:3px solid #f44336;
+	border-radius: 5px;
+	margin-bottom: 5%;
+	padding: 20px 12px;
+	box-shadow: 0 0 10px 0 rgba(0,0,0,0.09) ;
+
+}
+code {
+	color:#f44336;
+}
+.cours ul li {
+	margin-left: 45px;
+	font-size: 16px;
+}
+
+.codehtml{
+	box-shadow: 0 0 10px 0 rgba(0,0,0,0.2) ;
+	border-radius: 10px;
+	border:1px solid #f44336;
+	color: #ff6666;
+	font-size: 18px;
+}
+
+@media(max-width: 700px){
+	.cours{
+	margin-left:60px;
+	
+	}
+	
+}
+/**********************************page css 3***************************************/
+	
+.css {
+	color:#f44336;
+	width:70%;
+	border:2px solid #002155;
+	border-radius: 10px;
+}
+
+h3{
+	color: #f44999;
+}
+
+
+/***********************************page js *****************************************/
+
+ol {
+	margin-left: 50px;
+}
+
+
+/********************************** page de contact ***************************************** /
+
+/* Style inputs with type="text", select elements and textareas */
+
+input[type=text], select, textarea {
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */ 
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+  background-color: #f44336;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+  background-color: #f446;
+}
+
+/* Add a background color and some padding around the form */
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
