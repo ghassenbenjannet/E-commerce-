@@ -78,12 +78,3 @@ app.listen(port,function(){
     console.log('server satrted on port '+ port);
 });
 
-//this is a test to see if github works 
-
-//yes it work <3
-//heyy !
-
-// rana t3ebnaaa :'(
-
-//waaa -ghassen-
-//si tu es là manifestes toi :p 
