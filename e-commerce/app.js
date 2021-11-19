@@ -68,8 +68,10 @@ app.use(function (req, res, next) {
 //set routes
 var pages=require('./routes/pages.js');
 var adminPages=require('./routes/admin_pages.js');
+var adminCategories=require('./routes/admin_categories.js');
 
 app.use('/admin/pages',adminPages);
+app.use('/admin/categories',adminCategories);//zed le 
 app.use('/',pages);
 
 //start the server
@@ -78,11 +80,4 @@ app.listen(port,function(){
     console.log('server satrted on port '+ port);
 });
 
-//this is a test to see if github works 
 
-//yes it work <3
-//heyy !
-
-// rana t3ebnaaa :'(
-
-//waaa -ghassen-
