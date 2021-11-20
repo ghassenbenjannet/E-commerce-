@@ -2,22 +2,22 @@ var express= require('express');
 var router =express.Router();
 
 
-//Get Category model
+//Get category model
 var Category =require('../models/category');
 
 
 /*
- * GET pages index
+ * GET Category index video 9
  */
 
 router.get('/',function(req,res){
-    res.send('cats index');
-
-  /* Page.find({}).sort({sorting:1}).exec(function (err,pages){
-      res.render('admin/pages', {
-          pages:pages
+    Category.find(function(err,categories){
+        if (err)
+            return console.log(err);
+      res.render('admin/categories', {
+          categories:categories
       }) ;
-   });*/
+   });
 });
 
 

@@ -1,50 +1,28 @@
 <%- include ('../_layouts/headeradmin');-%>
 <br><br>
 
-<h2 class="page-title">Mes pages</h2>
-<a href="/admin/pages/add-page" class="btn btn-primary"> Ajouter une page</a>
+<h2 class="page-title">Mes Categories</h2>
+<a href="/admin/categories/add-category" class="btn btn-primary"> Ajouter une page</a>
 <br><br>
 <table class="table table-striped">
     <thread>
-        <tr class="Acceuil">
-            <th>Nom</th>
+        <tr>
+            <th>Categorie</th>
             <th>Editer</th>
             <th>Supprimer</th>
         </tr>
     </thread>
     <tbody>
-         <% pages.forEach(function(page){%>
-         <tr id="id_<%=page._id%>" class="<%=page.slug%>">
-             <td><%= page.title%></td>
-             <td><a href="/admin/pages/edit-page/<%=page.slug%>">Editer</a></td>
-             <% if (page.slug == "acceuil") { %>
-            <td></td>
-            <% }  else {%>
-            <td><a class="deleted" href="/admin/pages/delete-page/<%=page._id%>">Supprimer</a></td>
-            <% } %>
-             
+         <% categories.forEach(function(cat){%>
+         <tr>
+             <td><%= cat.title%></td>
+             <td><a href="/admin/categories/edit-category/<%=cat.slug%>">Editer</a></td>
+          
+            <td><a class="deleted" href="/admin/categories/delete-category/<%=cat._id%>">Supprimer</a></td>
+           
          </tr>
         <%});%> 
     </tbody>
     
 </table>
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-<script>
-
-    $('tbody').sortable({
-
-        items: "tr:not('.Acceuil')",
-        placeholder: "ui-state-hightlight",
-        update: function () {
-            var ids = $('tbody').sortable("serialize");
-            var url = "/admin/pages/reorder-pages";
-            
-            $.post(url, ids);
-        }
-
-    });
-
-</script>
-
-
 <%-include ('../_layouts/footeradmin');-%>
