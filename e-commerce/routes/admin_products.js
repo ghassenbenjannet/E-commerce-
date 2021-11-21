@@ -1,34 +1,47 @@
 var express= require('express');
 var router =express.Router();
+var mkdirp=require('mkdirp');
+var fs=require('fs-extra');
+var resizeImg=require('resize-img');
 
 
-//Get category model
+
+//Get page model
+var Product =require('../models/product');
+
+
+//Get Category model
 var Category =require('../models/category');
-
+const product = require('../models/product');
 
 /*
- * GET Category index video 19
+ * GRT product index
  */
 
 router.get('/',function(req,res){
-    Category.find(function(err,categories){
-        if (err)
-            return console.log(err);
-      res.render('admin/categories', {
-          categories:categories
-      }) ;
-   });
+    var count ;
+    Product.count(function(err,c){
+    count=c;
+    });
+    product.find(function(err,products){
+        res.render('admin/products',{
+            products:products,
+            count:count
+            
+        });
+    });
 });
 
 
 /*
- * GET add category 
+ * GET add pages 
  */
 
-router.get('/add-category',function(req,res){
+router.get('/add-page',function(req,res){
    var title="";
-   
-   res.render('admin/add_category',{
+   var slug="";
+   var content="";
+   res.render('admin/add_page',{
        title: title,
        slug: slug,
        content: content

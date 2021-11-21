@@ -2,7 +2,7 @@
 <br><br>
 
 <h2 class="page-title">Mes Categories</h2>
-<a href="/admin/categories/add-category" class="btn btn-primary"> Ajouter une page</a>
+<a href="/admin/categories/add-category" class="btn btn-primary"> Ajouter une categorie</a>
 <br><br>
 <table class="table table-striped">
     <thread>
@@ -16,10 +16,8 @@
          <% categories.forEach(function(cat){%>
          <tr>
              <td><%= cat.title%></td>
-             <td><a href="/admin/categories/edit-category/<%=cat.slug%>">Editer</a></td>
-          
-            <td><a class="deleted" href="/admin/categories/delete-category/<%=cat._id%>">Supprimer</a></td>
-           
+             <td><a href="/admin/categories/edit-category/<%= cat.slug %>">Editer</a></td>
+             <td><a class="deleted" href="/admin/categories/delete-category/<%=cat._id%>">Supprimer</a></td>
          </tr>
         <%});%> 
     </tbody>
