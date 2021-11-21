@@ -1,3 +1,4 @@
+
 *{
 	margin: 0; 
 	padding: 0;
@@ -8,7 +9,7 @@
 	width: 100%;
 	background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/img1.png);
 	background-position: center;
-    background-size: cover;
+     background-size: cover;
     position:relative;
 }
 
@@ -46,6 +47,7 @@ nav img{
 	color: #fff;
 	text-decoration: none;
 	font-size: 19px;
+        
 }
 
 .nav-links ul li::after {
@@ -60,13 +62,14 @@ nav img{
 
 .nav-links ul li:hover::after {
 	width: 100%;
+        background-color: transparent;
 }
 
 .text-box{
 	width: 90%;
 	color: #fff;
 	position: absolute;
-	top: 50%;
+	top: 30%;
 	left: 50%;
 	margin-left: -40%;
 	text-align: center;
@@ -197,96 +200,7 @@ h1{
 	}
 }
 
-.contenu{
-	width: 80%;
-	margin:auto;
-	text-align:center;
-	padding-top: 50px;
-}
 
-.contenu-info{
-	flex-basis: 32%;
-	border-radius: 20px;
-	margin-bottom: 30px;
-	position: relative;
-	overflow: hidden;
-	margin-bottom: 5%;
-	padding: 20px 12px;
-}
-
-
-.contenu-info img{
-	width: 50%;
-	margin-left: 50px;
-	padding: 50px 50px;
-}
-
-.layer{
-    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2) ;
-	border-radius: 10px;
-	height: 70%;
-	margin-left: 90px;
-	width: 30%;
-	position: absolute;
-	top: 2px;
-	left: 0;
-	transition: 0.5s;
-	padding: 50px 50px;
-	color: #fff;
-	text-decoration: none;
-}
-
-.layer:hover{
-	background: rgba(226,0,0,0.7);
-	cursor: pointer;
-	color:#fff;
-}
-
-.layer h2{
-	width: 100%;
-	font-weight: 500;
-	color: #fff;
-	font-size: 26px;
-	bottom: 0;
-	left:50%;
-	transform: translateX(-50%);
-	position: absolute;
-	text-align: center;
-	opacity: 0;
-	transition: 0.5s;
-	
-}
-.layer:hover h2{
-	bottom: 49%;
-	opacity: 1;
-
-}
-
-
-
-/**** footer-contact****/
-.cta{
-	margin:100px auto;
-	width: 80%;
-	background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(images/img2.png);
-	background-position: center;
-	background-size: cover;
-	border-radius: 10px;
-	text-align: center;
-	padding: 100px 0;
-}
-.cta h1{
-	color: #fff;
-	margin-bottom: 40px;
-	padding: 0;
-
-}
-
-@media(max-width: 700px){
-	.cta h1{
-		font-size: 26px;
-	}
-}
 
 /*****footer*****/
 .footer{
@@ -313,165 +227,6 @@ h2
 
 
 
-/*************************** HTML 5 *************************************/
-
-.sub-header{
-	height: 60vh;
-	width: 100%;
-	background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/img1.png);
-	background-position: center;
-	background-size: cover;
-	text-align: center;
-	color: #fff;
-}
-.sub-header .text-box{
-	margin-top:-7%;
-}
-@media(max-width: 700px){
-	.sub-header .text-box{
-	margin-top:-20%;
-	
-	}
-	.header .text-box
-	{margin-top:-15%;}
-}
-
-.contenu-html{
-	width: 80%;
-	margin:auto;
-	padding: 60px 0;
-	
-}
-
-.html-left{
-	flex-basis: 65%;
-	padding: 30px 2px;
-}
-.html-left img{
-	width: 100%;
-}
-.html-left h2{
-	color: #222;
-	font-weight: 600;
-	margin: 30px 0;
-}
-.html-left p,ul,li{
-	color: #999;
-	padding: 0;
-	font-size: 16px;
-}
-
-.somm{
-    flex-basis: 32%;
-}
-.somm h3{
-	text-align: center;
-	background: #f44336;
-	color: #fff;
-	padding: 7px 0;
-	font-size: 22px;
-	margin-bottom: 20px;
-
-
-}
-
-
-.somm li{
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	color:#555;
-	font-size: 18px;
-	padding: 8px;
-	box-sizing: border-box;
-	cursor: pointer;
-	
-}
-
-.somm li:hover{
-	background: #f446;
-	transition: 1s;
-
-}
-.somm li a{
-	text-decoration: none;
-	color: black;
-}
-.cours{
-	width: 75%;
-	margin-top: 5%;
-	display: flex;
-	justify-content: space-between;
-	flex-direction: column;
-	margin-left: 120px;
-}
-
-#l1 img{
-	width:70%;
-	border:2px solid #002155;
-	border-radius: 10px;
-}
-
-#l3 img{
-	width: 40%;
-
-}
-.cours p{
-	color: black;
-	font-size: 18px;
-}
-.cours div{
-	flex-basis: 31%;
-	background:transparent; ;
-	border:3px solid #f44336;
-	border-radius: 5px;
-	margin-bottom: 5%;
-	padding: 20px 12px;
-	box-shadow: 0 0 10px 0 rgba(0,0,0,0.09) ;
-
-}
-code {
-	color:#f44336;
-}
-.cours ul li {
-	margin-left: 45px;
-	font-size: 16px;
-}
-
-.codehtml{
-	box-shadow: 0 0 10px 0 rgba(0,0,0,0.2) ;
-	border-radius: 10px;
-	border:1px solid #f44336;
-	color: #ff6666;
-	font-size: 18px;
-}
-
-@media(max-width: 700px){
-	.cours{
-	margin-left:60px;
-	
-	}
-	
-}
-/**********************************page css 3***************************************/
-	
-.css {
-	color:#f44336;
-	width:70%;
-	border:2px solid #002155;
-	border-radius: 10px;
-}
-
-h3{
-	color: #f44999;
-}
-
-
-/***********************************page js *****************************************/
-
-ol {
-	margin-left: 50px;
-}
 
 
 /********************************** page de contact ***************************************** /
@@ -501,7 +256,7 @@ input[type=submit] {
 
 /* When moving the mouse over the submit button, add a darker green color */
 input[type=submit]:hover {
-  background-color: #f446;
+  background-color: #f46;
 }
 
 /* Add a background color and some padding around the form */
