@@ -57,59 +57,88 @@ router.get('/add-product', function (req, res) {
 
 
 /*
- * POST add pages 
+ * POST add product 
  */
 
-router.post('/add-page',function(req,res){
+router.post('/add-product',function(req,res){
+    var imgf=typeof req.files.image!=="undifined" ? req.files.image.name:"";
+    
    req.checkBody('title','Nom doit être rempli').notEmpty();
-   req.checkBody('content','Contenu doit être rempli').notEmpty();
+   req.checkBody('desc','Descreption doit être rempli').notEmpty();
+   req.checkBody('price','prix doit être établi').isDecimal();
+   req.checkBody('image','Image obligatoire').isImage(imgf);
    
-    var  title=req.body.title;
-    var  slug=req.body.slug.replace(/\s+/g,'-').toLowerCase();
-    if (slug=="") slug=title.replace(/\s+/g,'-').toLowerCase();
-    var  content=req.body.content;
+   
+
+   
+    var  title=req.body.title; 
+    var slug=title.replace(/\s+/g,'-').toLowerCase();
+    var  desc=req.body.desc;
+    var  price=req.body.price;
+    var  category=req.body.category;
   
    var errors=req.validationErrors();
    if(errors){
-       res.render('admin/add_page',{
-       errors: errors,
-       title: title,
-       slug: slug,
-       content: content
-   });
+       Category.find(function (err, categories) {
+        res.render('admin/add_product', {
+            errors: errors,
+            title: title,
+            desc: desc,
+            categories: categories,
+            price: price
+        });
+    });
    }
    else{
-      Page.findOne({slug:slug}, function(err,page){
-          if (page){
-             req.flash('danger','Slug existant, générer un autre');
-             res.render('admin/add_page',{
-              title: title,
-              slug: slug,
-              content: content
+      Product.findOne({slug:slug}, function(err,product){
+          if (product){
+             req.flash('danger','produit existant, générer un autre');
+             Category.find(function (err, categories) {
+        res.render('admin/add_product', {
+            title: title,
+            desc: desc,
+            categories: categories,
+            price: price
+        });
+    
    });
           }
           else {
-                var page = new Page({
+                var pric=parseFloat(price).toFixed(2);
+                var product = new Product({
                     title: title,
                     slug: slug,
-                    content: content,
-                    sorting: 100
+                    desc: desc,
+                    price: pric,
+                    category: category,
+                    image:imgf
                 });
 
-                page.save(function (err) {
+                product.save(function (err) {
                     if (err)
                         return console.log(err);
 
-                    Page.find({}).sort({sorting: 1}).exec(function (err, pages) {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            req.app.locals.pages = pages;
-                        }
+                    mkdirp('public/product_images/'+product._id,function(err){
+                        return console.log(err);
                     });
+                    mkdirp('public/product_images/'+product._id+'/gallery',function(err){
+                        return console.log(err);
+                    });
+                    mkdirp('public/product_images/'+product._id+'/gallery/thumbs',function(err){
+                        return console.log(err);
+                    });
+                    
+                    if(imgf!=""){
+                        var proimg=req.files.image;
+                        var path='public/product_images/'+product._id+'/'+imgf;
+                        proimg.mv(path, function(error){
+                            return console.log(error);
+                            
+                        });
+                    }
 
-                    req.flash('success', 'Page bien ajoutée');
-                    res.redirect('/admin/pages');
+                    req.flash('success', 'Produit bien ajoutée');
+                    res.redirect('/admin/products');
                 });
             }
         });
