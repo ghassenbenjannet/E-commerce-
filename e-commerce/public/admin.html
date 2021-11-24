@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+ <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+
+    <title>E-shopping Admin</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <link rel="stylesheet" href="/style.css">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  </head>
+
+  <body>
+    
+
+    <section class="header">
+        <nav>
+	    <div class="nav-links" id="navlinks">
+	      <i class="fa fa-times" onclick="hideMenu()"></i>
+	      <ul class="nav navbar-nav">
+                <li><a href="/admin/pages">Pages</a></li>
+                <li><a href="/admin/categories">Categories</a></li>
+                <li><a href="/admin/products">Produits</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/users/logout">Logout</a></li>
+             </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>		
+        </nav>
+        <div class="text-box">
+            <h1>E-shopping:Langages et cours de Programmation</h1>
+            <p>Platforme qui mis à votre disposition des langages et des cours </p>
+             <a href=#roww class="hero-btn">VOIR PLUS</a>
+    </section>
+    <script type="text/javascript">
+		var navlinks=document.getElementById("navlinks");
+		function showMenu(){
+			navlinks.style.right="0";
+		}
+		function hideMenu(){
+			navlinks.style.right="-200px";
+		}
+	</script>
+        <br><br><!-- comment -->
+
+
+
+ <section class="Contenu">
+	<h1 id="roww">E-shopping: ADMIN</h1>
+	<div class="row" >
+		<div class="contenu-info" >
+                    <a href="/admin/pages" >
+                        <img src="images/pag.png" alt="logopage ">
+                        <div class="layer">
+				<h2> Page </h2>
+			</div></a>
+	    </div>
+
+	    <div class="contenu-info"><a href="/admin/categories">
+			<img src="images/caty.png" alt="logocat">
+			<div class="layer">
+				<h2>Catégories </h2>
+			</div></a>
+	    </div>
+
+	    <div class="contenu-info"><a href="/admin/products">
+			<img src="images/prod.png" alt="logoproduits">
+			<div class="layer">
+				<h2>Produits</h2>
+			</div></a>
+	    </div>
+        </div>
+ </section>
+
+
+    <section class="footer">
+	<h4>A propos de nous</h4>
+	<P>Nous avons créer E-Shopping  pour  les jeunes développeur qui visent à bien maitriser HTML, CSS et Java Script: espace de vente et espace cours</P>
+	<div class="icons">
+		<a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://www.twitter.com/?lang=fr" target="_blank"><i class="fa fa-twitter"></i></a>	
+		<a href="https://www.instagram.com/?hl=fr" target="_blank"><i class="fa fa-instagram"></i></a>
+		<a href="https://www.youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a>	
+		<a href="https://www.linkedin.com/" target="_blank"><i class="fa fa-linkedin"></i></a>
+	
+	</div>
+	<p>Made with <i class="fa fa-heart"> by Ghassen Ben Jannet & Imen Ben Sassi</i>	</p>
+</section>
+    <br><br><br><!-- comment -->
+    
+    <script src="/js/main.js"> </script>
+    <script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.css"></script>
+  </body>
+</html>
