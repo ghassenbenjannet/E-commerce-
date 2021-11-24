@@ -40,7 +40,7 @@ router.get('/add-category',function(req,res){
  * POST add pages 
  */
 
-router.post('/add-page',function(req,res){
+router.post('/ajout-categorie',function(req,res){
    req.checkBody('title','Nom doit être rempli').notEmpty();
    req.checkBody('content','Contenu doit être rempli').notEmpty();
    
@@ -51,7 +51,7 @@ router.post('/add-page',function(req,res){
   
    var errors=req.validationErrors();
    if(errors){
-       res.render('admin/add_page',{
+       res.render('admin/add_category',{
        errors: errors,
        title: title,
        slug: slug,
@@ -62,7 +62,7 @@ router.post('/add-page',function(req,res){
       Page.findOne({slug:slug}, function(err,page){
           if (page){
              req.flash('danger','Slug existant, générer un autre');
-             res.render('admin/add_page',{
+             res.render('admin/add_category',{
               title: title,
               slug: slug,
               content: content
@@ -89,7 +89,7 @@ router.post('/add-page',function(req,res){
                     });
 
                     req.flash('success', 'Page bien ajoutée');
-                    res.redirect('/admin/pages');
+                    res.redirect('/admin/categories');
                 });
             }
         });
