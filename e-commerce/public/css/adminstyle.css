@@ -33,11 +33,15 @@ table.alignmiddle td {
     vertical-align: middle !important;
 }
 
+*{
+	margin: 0; 
+	padding: 0;
+}
 
 .header{
 	min-height: 70vh;
 	width: 100%;
-	background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(/images/img1.png);
+	background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/img1.png);
 	background-position: center;
     background-size: cover;
     position:relative;
@@ -129,7 +133,9 @@ nav img{
 	transition: 1s;
 }
 
-
+nav .fa{
+	display: none;
+}
 
 @media(max-width: 700px){
 	.text-box h1{
