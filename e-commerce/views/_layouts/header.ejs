@@ -11,8 +11,8 @@
      <link rel="stylesheet" href="./style.css">
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   </head>
 
   <body>
@@ -22,9 +22,14 @@
 	    <div class="nav-links" id="navlinks">
 	      <i class="fa fa-times" onclick="hideMenu()"></i>
 	      <ul class="nav navbar-nav">
-                <li><a href="">Accueil</a></li>
-                <li><a href="">A propos</a></li>
-                <li><a href="/contact.ejs">Contact</a></li>
+                        <% pages.forEach(function(page){ %>
+                        <% if (page.slug == "acceuil") { %>
+                        <li><a href="/"><%= page.title %></a></li>
+                        <% } else {%>
+                        <li><a href="/<%= page.slug %>"><%= page.title %></a></li>
+                        <% } %>
+                        <% }); %>
+                    </ul>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="/users/logout">Logout</a></li>
@@ -36,6 +41,7 @@
             <h1>E-Shopping : Langages et cours de Programmation</h1>
             <p>Platforme qui mis à votre disposition des langages et des cours </p>
              <a href=#roww class="hero-btn">VOIR PLUS</a>
+        </div>
     </section>
     <script type="text/javascript">
 		var navlinks=document.getElementById("navlinks");
@@ -47,8 +53,21 @@
 		}
 	</script>
 
-    <div class="container">
-    <%- messages('messages', locals) %>
+    <div class="somm">
+        <ul><h3>Mes catégories</h3></ul>
+        <li><a href="/products"> Tous les produits</a></li>
+        <%categories.forEach(function(one){%>
+        <li><a href="/products/<%=one.slug%>"><%=one.title%></a></li>
+        <%});%>
+        </div>
+        <br><br>
+        <div class="container" >
+            
+         <%- messages('messages', locals) %>
+        
+      
+        
+    
 
       
 
