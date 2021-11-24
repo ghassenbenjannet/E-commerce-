@@ -101,27 +101,41 @@ router.post('/add-page',function(req,res){
 /*
  * Post reorder pages
  */
-
-router.post('/reorder-pages',function(req,res){
-   var ids = req.body['id[]'];
-   var n=0;
+function orderp(tt,rep){
+     var n=0;
    
-   for (var i = 0; i < ids.length; i++) {
-        var id = ids[i];
+   for (var i = 0; i < tt.length(); i++) {
+        var id = tt[i];
         n++;
 
         (function (n) {
-            Page.findById(id, function (err, page) {
+            Page.findById(id, function (msg, page) {
                 page.sorting = n;
-                page.save(function (err) {
-                    if (err)
-                        return console.log(err);
+                page.save(function (msg) {
+                    if (msg)
+                        return console.log(msg);
+                    n++;
+                    if(n>tt.length)
+                        rep();
                     
                 });
             });
         })(n);
    }
-});
+}
+
+
+router.post('/reorder-pages',function(req,res){
+   var tt = req.body['id[]'];
+   orderp(tt,function(){
+       Page.find({}).sort({sorting:1}).exec(function(erreur,pages){
+       if (erreur)
+           console.log(erreur);
+       else
+           req.app.locals.pages=pages;
+     });
+   });
+ });
 
 /*
  * GET modifier page
