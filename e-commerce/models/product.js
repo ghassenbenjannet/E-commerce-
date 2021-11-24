@@ -23,7 +23,7 @@ var ProductSchema=mongoose.Schema({
     },
     image:{
         type:String
-    },
+    }
 });
 
 var Product=module.exports=mongoose.model('Product',ProductSchema);
