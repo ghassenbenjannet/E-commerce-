@@ -10,9 +10,9 @@ var fileUpload = require('express-fileupload');
 // connect to db
 mongoose.connect(config.database);
 var  db=mongoose.connection;
-db.on('error',console.error.bind(console,'connection error:'));
+db.on('error',console.error.bind(console,'erreur de connexion Mongo:'));
 db.once('open',function(){
-    console.log('connected to MongoDB');
+    console.log('connecté MongoDataBase');
 });
 // init app
 var app=express();
@@ -26,6 +26,32 @@ app.use(express.static(path.join(__dirname,'public')));
 
 //set global variable for errors
 app.locals.errors=null;
+
+// GET Page Model
+var Page=require('./models/page');
+
+//Get all pages
+Page.find({}).sort({sorting:1}).exec(function (erreur,pages){
+      if(erreur)
+          console.log(erreur);
+      else{
+          app.locals.pages=pages;
+      }
+   });
+   
+   
+   // GET catégorie Model
+var Category=require('./models/category');
+
+//Get all catégories
+Category.find(function (msg,mines){
+      if(msg)
+          console.log(msg);
+      else{
+          app.locals.categories=mines;
+      }
+   });
+
 //Express fileUpload middlrware video 9
 app.use(fileUpload());
 
@@ -40,7 +66,7 @@ app.use(bodyParser.json());
 app.use(session({
   secret: 'keyboard cat',
   resave: true,
-  saveUninitialized: true,
+  saveUninitialized: true
   //cookie: { secure: true }
 }));
 
@@ -59,6 +85,16 @@ app.use(expressValidator({
             value: value
             
         };
+    },
+    customValidators:{
+        isImage : function(val,fnom){
+            var ext=(path.extname(fnom)).toLowerCase();
+            switch(ext){
+                case '.jpg' : return '.jpg';
+                case '.png' : return '.png';
+                default : return false;
+            }
+        }
     }
 }));
 
