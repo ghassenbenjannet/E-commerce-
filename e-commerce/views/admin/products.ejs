@@ -2,6 +2,8 @@
 <br><br>
 
 <h2 class="page-title">Mes Produits</h2>
+<a href="/admin.html" class="btn btn-primary"> Espace Admin</a>
+
 <a href="/admin/products/add-product" class="btn btn-primary"> Ajouter un produit</a>
 <br><br>
 <table class="table table-striped">
@@ -19,15 +21,17 @@
          <% products.forEach(function(product){%>
          <tr >
              <td><%= product.title%></td>
-             <td>$<%=parseFloat(product.price).toFixed(2)  %></td>
+             <td><%=parseFloat(product.price).toFixed(2)%> €</td>
              <td><%= product.category%></td>
              <td>
-                 <img src="product_images/<%=product._id %>/<%=product.image %>">
+                <% if (product.image == "") { %>
+                <img id="imm" src="/images/vide.png">
+                <% } else {%>
+                <img id="imm" src="/product_images/<%= product._id %>/<%= product.image %>">
+                <% }%>
             </td>
              <td><a href="/admin/products/edit-product/<%=product._id%>">Editer</a></td>
              <td><a class="deleted" href="/admin/products/delete-product/<%=product._id%>">Supprimer</a></td>
-            <% } %>
-             
          </tr>
         <%});%> 
     </tbody>
