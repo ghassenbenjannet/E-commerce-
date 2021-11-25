@@ -7,13 +7,13 @@ var Category =require('../models/category');
 
 
 /*
- * GET Category index video 19
+ * GET Categorie
  */
 
 router.get('/',function(req,res){
-    Category.find(function(err,categories){
-        if (err)
-            return console.log(err);
+    Category.find(function(msg,categories){
+        if (msg)
+            return console.log(msg);
       res.render('admin/categories', {
           categories:categories
       }) ;
@@ -29,39 +29,33 @@ router.get('/add-category',function(req,res){
    var title="";
    
    res.render('admin/add_category',{
-       title: title,
-       slug: slug,
-       content: content
+       title: title
    });
 });
 
 
 /*
- * POST add pages 
+ * POST ajout catégorie
  */
 
-router.post('/ajout-categorie',function(req,res){
+router.post('/add-category',function(req,res){
    req.checkBody('title','Nom doit être rempli').notEmpty();
-   req.checkBody('content','Contenu doit être rempli').notEmpty();
    
     var  title=req.body.title;
-    var  slug=req.body.slug.replace(/\s+/g,'-').toLowerCase();
-    if (slug=="") slug=title.replace(/\s+/g,'-').toLowerCase();
-    var  content=req.body.content;
+    var  slug=title.replace(/\s+/g,'-').toLowerCase();
+    
   
-   var errors=req.validationErrors();
-   if(errors){
+   var msg=req.validationErrors();
+   if(msg){
        res.render('admin/add_category',{
-       errors: errors,
-       title: title,
-       slug: slug,
-       content: content
+       errors: msg,
+       title: title
    });
    }
    else{
-      Page.findOne({slug:slug}, function(err,page){
-          if (page){
-             req.flash('danger','Slug existant, générer un autre');
+      Category.findOne({slug:slug}, function(msg,category){
+          if (category){
+             req.flash('danger','catégorie existante, générer un autre');
              res.render('admin/add_category',{
               title: title,
               slug: slug,
@@ -69,131 +63,107 @@ router.post('/ajout-categorie',function(req,res){
    });
           }
           else {
-                var page = new Page({
+                var cat = new Category({
                     title: title,
-                    slug: slug,
-                    content: content,
-                    sorting: 100
+                    slug: slug
                 });
 
-                page.save(function (err) {
-                    if (err)
-                        return console.log(err);
-
-                    Page.find({}).sort({sorting: 1}).exec(function (err, pages) {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            req.app.locals.pages = pages;
-                        }
+                cat.save(function (msg) {
+                    if (msg)
+                        return console.log(msg);
+                    Category.find(function (msg,mines){
+                        if(msg)
+                            console.log(msg);
+                        Category.find(function (msg,mines){
+                            if(msg)
+                                console.log(msg);
+                            else{
+                                req.app.locals.categories=mines;
+                            }
+                        });
                     });
-
-                    req.flash('success', 'Page bien ajoutée');
+                    req.flash('success', 'Catégorie bien ajoutée');
                     res.redirect('/admin/categories');
                 });
             }
         });
-
-   }
-   
-   
+    }
 });
 
-/*
- * Post reorder pages
- */
-
-router.post('/reorder-pages',function(req,res){
-   var ids = req.body['id[]'];
-   var n=0;
-   
-   for (var i = 0; i < ids.length; i++) {
-        var id = ids[i];
-        n++;
-
-        (function (n) {
-            Page.findById(id, function (err, page) {
-                page.sorting = n;
-                page.save(function (err) {
-                    if (err)
-                        return console.log(err);
-                    
-                });
-            });
-        })(n);
-   }
-});
 
 /*
- * GET modifier page
+ * GET modifier catégorie
  */
 
-router.get('/edit-page/:slug',function(req,res){
-   Page.findOne({slug:req.params.slug},function(err,page){
-       if(err) 
-           return console.log(err);
+router.get('/edit-category/:id',function(req,res){
+   Category.findById(req.params.id,function(msg,category){
+       if(msg) 
+           return console.log(msg);
+       Category.find(function (msg,mines){
+       if(msg)
+          console.log(msg);
+       else{
+          req.app.locals.categories=mines;
+      }
+   });
        
-       res.render('admin/edit_page',{
-        title: page.title,
-        slug: page.slug,
-        content: page.content,
-        id: page._id
+       res.render('admin/edit_category',{
+        title: category.title,
+        id: category._id
         });
    });
   
 });
 
 /*
- * POST edit page
+ * POST modifier catégorie
  */
-router.post('/edit-page/:slug', function (req, res) {
+router.post('/edit-category/:id', function (req, res) {
 
-    req.checkBody('title', 'Nom doit être rempli.').notEmpty();
-    req.checkBody('content', 'Contenu doit être rempli').notEmpty();
+    req.checkBody('title', 'Nom: champs obligatoire').notEmpty();
 
     var title = req.body.title;
-    var slug = req.body.slug.replace(/\s+/g, '-').toLowerCase();
-    if (slug == "")
-        slug = title.replace(/\s+/g, '-').toLowerCase();
-    var content = req.body.content;
-    var id = req.body.id;
+    var slug = title.replace(/\s+/g, '-').toLowerCase();
+    var id = req.params.id;
 
-    var errors = req.validationErrors();
+    var msg = req.validationErrors();
 
-    if (errors) {
-        res.render('admin/edit_page', {
-            errors: errors,
+    if (msg) {
+        res.render('admin/edit_category', {
+            errors: msg,
             title: title,
-            slug: slug,
-            content: content,
             id: id
         });
     } else {
-        Page.findOne({slug: slug,_id: {'$ne': id}}, function (err, page) {
-            if (page) {
-                req.flash('danger', 'Slug existant, générer un autre');
-                res.render('admin/edit_page', {
+        Category.findOne({slug: slug, _id: {'$ne': id}}, function (msg, category) {
+            if (category) {
+                req.flash('danger', 'Existante! créer une autre');
+                res.render('admin/edit_category', {
                     title: title,
-                    slug: slug,
-                    content: content,
                     id: id
                 });
             } else {
+                Category.findById(id, function (msg, category) {
+                    if (msg)
+                        return console.log(msg);
 
-                Page.findById(id, function (err, page) {
-                    if (err)
-                        return console.log(err);
+                    category.title = title;
+                    category.slug = slug;
 
-                    page.title = title;
-                    page.slug = slug;
-                    page.content = content;
+                    category.save(function (msg) {
+                        if (msg)
+                            return console.log(msg);
 
-                    page.save(function (err) {
-                        if (err)
-                            return console.log(err);
+                        Category.find(function (msg, categories) {
+                            if (msg) {
+                                console.log(msg);
+                            } else {
+                                req.app.locals.categories = categories;
+                            }
+                        });
 
-                        req.flash('success', 'Page bien ajoutée');
-                        res.redirect('/admin/pages/edit-page/' +page.slug);
+                        req.flash('success', 'Bien modifiée');
+                        res.redirect('/admin/categories/edit-category/' + id);
                     });
 
                 });
@@ -205,19 +175,25 @@ router.post('/edit-page/:slug', function (req, res) {
 
 });
 
-
-
 /*
- * supprimer une page 
+ * GET delete category
  */
+router.get('/delete-category/:id', function (req, res) {
+    Category.findByIdAndRemove(req.params.id, function (msg) {
+        if (msg)
+            return console.log(msg);
 
-router.get('/delete-page/:id',function(req,res){
-   Page.findByIdAndRemove(req.params.id, function(error){
-   if(error) return console.log(error);
-   
-   req.flash('success', 'Page supprimée');
-   res.redirect('/admin/pages/');
-   });
+        Category.find(function (msg, categories) {
+            if (msg) {
+                console.log(msg);
+            } else {
+                req.app.locals.categories = categories;
+            }
+        });
+
+        req.flash('success', 'Supression validée');
+        res.redirect('/admin/categories/');
+    });
 });
 
 // Exports

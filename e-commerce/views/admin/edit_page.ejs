@@ -2,7 +2,6 @@
 <br><br>
 
 <h2 class="page-title">Editer la page</h2>
-<a href="/admin/pages" class="btn btn-primary"> Back to all pages</a>
 <br><br>
 
 <form method="post" action="/admin/pages/edit-page/<%= slug %>">
@@ -23,5 +22,7 @@
     
     <input type="hidden" name="id" value="<%= id %>">
     <button class="btn btn-default">Enregistrer les modifications</button>
+    <a href="/admin/pages" class="btn btn-primary"> Retour</a>
+
 </form>
 <%-include ('../_layouts/footeradmin');-%>

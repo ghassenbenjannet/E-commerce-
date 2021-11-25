@@ -3,6 +3,7 @@ var path =require ('path');
 var mongoose=require('mongoose');
 var config = require('./config/database');
 var bodyParser=require('body-parser');
+var passport=require('passport');
 var session = require('express-session');
 var  expressValidator=require('express-validator');
 var fileUpload = require('express-fileupload');
@@ -97,9 +98,20 @@ app.use(expressValidator({
         }
     }
 }));
+//passport
+require('./config/passport')(passport);
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 //express Messages
+
 app.use(require('connect-flash')());
+app.get('*',function(req,res,next){
+    res.locals.panier=req.session.panier;
+    res.locals.utilisateur=req.utilisateur||null;
+    next();
+});
 app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();
@@ -110,12 +122,21 @@ var pages=require('./routes/pages.js');
 var adminPages=require('./routes/admin_pages.js');
 var adminCategories=require('./routes/admin_categories.js');
 var adminProducts=require('./routes/admin_products.js');
+var products = require('./routes/products.js');
+var panier = require('./routes/panier.js');
+var utilisateurs = require('./routes/utilisateurs.js');
 
 
+
+
+app.use('/products', products);
 app.use('/admin/pages',adminPages);
-app.use('/admin/categories',adminCategories);//zed le 
-app.use('/admin/products',adminProducts);//zed le 
+app.use('/panier', panier);
+app.use('/admin/categories',adminCategories);
+app.use('/admin/products',adminProducts); 
 app.use('/',pages);
+app.use('/utilisateurs',utilisateurs);
+
 
 //start the server
 port=3000;

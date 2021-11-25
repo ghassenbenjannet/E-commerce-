@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+ <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+  <link rel="icon" href="images/icc.png">
+
+    <title><%= title %></title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <link rel="stylesheet" href="/style.css">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  </head>
+
+  <body>
+    
+
+    <section class="header">
+        <nav>
+	    <div class="nav-links" id="navlinks">
+	      <i class="fa fa-times" onclick="hideMenu()"></i>
+	      <ul class="nav navbar-nav">
+                        <% pages.forEach(function(page){ %>
+                        <% if (page.slug == "acceuil") { %>
+                        <li><a href="/"><%= page.title %></a></li>
+                        <% } else {%>
+                        <li><a href="/<%= page.slug %>"><%= page.title %></a></li>
+                        <% } %>
+                        <% }); %>
+                    </ul>
+              <ul class="nav navbar-nav navbar-right">
+                 <li>
+                            <a href="/panier/voir">Panier ( 
+                                <% if (typeof panier !== "undefined") { %>
+                                <%= panier.length %>
+                                <% } else {%>
+                                0
+                                <% } %>
+                            )</a>
+                 </li>
+                 <li><a href="/utilisateurs/connect">Admin</a></li>
+
+             </ul>
+              
+              
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>		
+        </nav>
+        <div class="text-box">
+            <h1>E-shopping:Langages et cours de Programmation</h1>
+            <p>Platforme qui mis à votre disposition des langages et des cours </p>
+             <a href=#roww class="hero-btn">VOIR PLUS</a>
+    </section>
+    <script type="text/javascript">
+		var navlinks=document.getElementById("navlinks");
+		function showMenu(){
+			navlinks.style.right="0";
+		}
+		function hideMenu(){
+			navlinks.style.right="-200px";
+		}
+	</script>
+        <div class="somm">
+        <ul><h3>Mes catégories</h3></ul>
+        <li><a href="/products"> Tous les produits</a></li>
+        <%categories.forEach(function(one){%>
+        <li><a href="/products/<%=one.slug%>"><%=one.title%></a></li>
+        <%});%>
+        </div>
+   
+    
+            
+         <%- messages('messages', locals) %>
+         <% if (errors) {%>
+        <% errors.forEach(function(error) { %>
+        <div class="alert alert-danger">
+            <%= error.msg %>
+        </div>
+        <% });%>
+    <% }%>
+             <br><br><br><br>
+
+         <div class='container'>
+        
+      
+        
+    
+
+      
+
+
+
+    
+   

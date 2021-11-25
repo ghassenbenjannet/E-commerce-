@@ -14,11 +14,11 @@
         </tr>
     </thread>
     <tbody>
-         <% categories.forEach(function(cat){%>
+         <% categories.forEach(function(v){%>
          <tr>
-             <td><%= cat.title%></td>
-             <td><a href="/admin/categories/edit-category/<%= cat.slug %>">Editer</a></td>
-             <td><a class="deleted" href="/admin/categories/delete-category/<%=cat._id%>">Supprimer</a></td>
+             <td><%= v.title%></td>
+             <td><a href="/admin/categories/edit-category/<%= v._id %>">Editer</a></td>
+             <td><a class="deleted" href="/admin/categories/delete-category/<%=v._id%>">Supprimer</a></td>
          </tr>
         <%});%> 
     </tbody>

@@ -16,6 +16,7 @@ router.get('/',function(req,res){
     
 });
 
+
 //appliquer une page
 router.get('/:slug',function(req,res){
     var slug=req.params.slug;

@@ -1,0 +1,19 @@
+<%- include ('_layouts/header_1')-%>
+<div  class="row products">
+
+    <% products.forEach(function(mine){ %>
+            <div class="col-xs-12 col-md-4">
+                <h3><%= mine.title %></h3>
+                <a class="pa" href="/products/<%= mine.category %>/<%= mine.slug %>">
+                    <img style='width: 120px ; margin-left:50%' class="pimage" src="/product_images/<%= mine.id %>/<%= mine.image %>" alt="">
+                </a>
+                <br><br><br>
+                <h4><%= parseFloat(mine.price).toFixed(2) %> €</h4>
+                <a class="vd" href="/products/<%= mine.category %>/<%= mine.slug %>">Plus d'informations</a>
+                <br><br><br>
+            </div>
+        <% }); %>
+    
+</div>
+
+<%-include ('_layouts/footer')-%>

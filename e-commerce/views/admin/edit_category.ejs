@@ -1,0 +1,18 @@
+<%- include ('../_layouts/headeradmin');-%>
+<br><br>
+
+<h2 class="page-title">Modifier la catégorie</h2>
+<br><br>
+
+<form method="post" action="/admin/categories/edit-category/<%= id %>">
+    
+    <div class="form-group">
+        <label for="">Nom</label>
+        <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Nom">
+    </div>
+
+    <button class="btn btn-default">Enregistrer</button>
+    <a href="/admin/categories" class="btn btn-primary">Retour</a>
+
+</form>
+<%-include ('../_layouts/footeradmin');-%>
