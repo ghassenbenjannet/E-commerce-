@@ -22,7 +22,7 @@ router.post('/connect',function(req,res){
         res.redirect('/admin/pages');
           else
        res.redirect('/utilisateurs/connect');
-       req.flash('Failure','Accées réservé pour Admin' );
+       req.flash('danger','Accées réservé pour Admin' );
 
         
      });
@@ -32,7 +32,6 @@ router.post('/connect',function(req,res){
 
 // se déconnecter
 router.get('/dec', (req, res) => {
-  req.logout();
   req.flash('Success', 'Déconnecté');
   res.redirect('/utilisateurs/connect');
 });

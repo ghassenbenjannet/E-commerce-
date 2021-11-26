@@ -3,7 +3,6 @@ var path =require ('path');
 var mongoose=require('mongoose');
 var config = require('./config/database');
 var bodyParser=require('body-parser');
-var passport=require('passport');
 var session = require('express-session');
 var  expressValidator=require('express-validator');
 var fileUpload = require('express-fileupload');
@@ -98,10 +97,7 @@ app.use(expressValidator({
         }
     }
 }));
-//passport
-require('./config/passport')(passport);
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 
 //express Messages
